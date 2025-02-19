@@ -4,7 +4,7 @@ const cors = require("cors");
 const multer = require("multer");      //install and import multer
 const jwt = require("jsonwebtoken");
 const path = require("path");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 const dotenv = require("dotenv");
 const bcrypt = require('bcryptjs'); // New
 
