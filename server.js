@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const multer = require("multer");      //install and import multer
 const jwt = require("jsonwebtoken");
+const path = require("path");
 const bcrypt = require("bcrypt");
 const dotenv = require("dotenv");
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(express.json());    //this express middleware function, will have acces to request object. This function goes into req object, it will collects the data we send, converts that into javascript object and gives it.
 app.use(express.urlencoded());
 app.use('/uploads', express.static('uploads')); //express.static
+app.use(express.static(path.join(__dirname, "./client/build")));
 
 let authorise = (req,res,next)=>{
     console.log("inside authorize middleware function");
@@ -36,6 +38,10 @@ const storage = multer.diskStorage({
   });
   
   const upload = multer({ storage: storage });
+
+  app.get("*",(req,res)=>{
+    res.sendFile("./client/build/index.html");
+  });
 
 
 app.post("/signup",upload.single("profilePic") , async (req,res)=>{    //the data that comes from client to server is there in "req". To work on that we need express middle ware function. so we use app.use(express.json());
