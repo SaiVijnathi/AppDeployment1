@@ -11,7 +11,7 @@ function Login() {
     let dispatch = useDispatch();
 
     useEffect(()=>{
-        axios.defaults.baseURL = 'http://localhost:8888';
+        axios.defaults.baseURL = '';
         if(localStorage.getItem("token")){
             //onValidateToken();
             axios.defaults.headers.common['Authorization'] = localStorage.getItem("token");
@@ -27,7 +27,7 @@ function Login() {
             body:dataToSend,
         }
 
-        let JSONData = await fetch("http://localhost:8888/validateToken",reqOptions);
+        let JSONData = await fetch("/validateToken",reqOptions);
         let JSOData = await JSONData.json();
         console.log(JSOData);
 
@@ -53,7 +53,7 @@ function Login() {
     //         body:dataToSend,
     //     }
 
-    //     let JSONData = await fetch("http://localhost:8888/login",reqOptions);
+    //     let JSONData = await fetch("/login",reqOptions);
     //     let JSOData = await JSONData.json();
     //     console.log(JSOData);
 
